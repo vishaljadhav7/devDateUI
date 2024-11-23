@@ -1,13 +1,12 @@
-import SignIn from "./SignIn"
-import SignUp from "./SignUp"
-
+import {HERO_URL} from '../utils/constants'
+import { Link } from 'react-router-dom'
 
 const HeroSection = () => {
   return (
     <div
-    className="hero min-h-screen fixed top-0"
+    className="hero h-screen fixed top-0 "
     style={{
-      backgroundImage: "url(https://img.daisyui.com/images/stock/photo-1507358522600-9f71e620c44e.webp)",
+      backgroundImage:`url(${HERO_URL})`,
     }}>
     <div className="hero-overlay bg-opacity-60"></div>
     <div className="hero-content text-neutral-content text-center">
@@ -16,7 +15,17 @@ const HeroSection = () => {
         <p className="mb-5 text-[20px] text-white">
         Ready to connect with fellow techies? Join our platform for casual encounters or meaningful relationships. Discover someone who speaks your language—both in coding and in love!
         </p>
-        <button className="btn btn-primary">Get Started</button>
+        <div className=' flex gap-3  justify-center'>
+        
+        <Link to={"/signup"}>
+        <button className="btn btn-primary text-white">Get Started</button>
+        </Link>
+
+        <Link to={"/signin"}>   
+        <button className="btn btn-accent text-white">Sign In</button>
+         </Link>
+        
+        </div>
       </div>
     </div>
   </div>
