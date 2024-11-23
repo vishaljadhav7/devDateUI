@@ -1,11 +1,13 @@
-
+// import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import Layout from "./components/Layout";
 
 function App() {
 
+  
   return (
     <>
-      <div>
-          <h1>Dev Dates</h1> 
+      <div className="w-screen h-screen bg-white overflow-x-hidden relative">
+        <Layout/>
       </div>
     </>
   )
