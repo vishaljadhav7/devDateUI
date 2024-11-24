@@ -7,6 +7,7 @@ import SignUp from "./pages/SignUp"
 import Profile from "./pages/Profile";
 import Connections from "./pages/Connections";
 import Requests from "./pages/Requests";
+import Footer from "./components/Footer";
 
 function App() {
 
@@ -50,7 +51,7 @@ function App() {
   
   return (
     <>
-      <div className="w-screen ">
+      <div className="w-screen min-h-fit relative bg-red-300" >
          <RouterProvider router={allRoutes}/>
       </div>
     </>
