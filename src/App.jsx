@@ -7,7 +7,9 @@ import SignUp from "./pages/SignUp"
 import Profile from "./pages/Profile";
 import Connections from "./pages/Connections";
 import Requests from "./pages/Requests";
-import Footer from "./components/Footer";
+// import Footer from "./components/Footer";
+import { Provider } from "react-redux";
+import appStore from "./utils/appStore";
 
 function App() {
 
@@ -52,7 +54,9 @@ function App() {
   return (
     <>
       <div className="w-screen min-h-fit relative bg-red-300" >
+        <Provider store={appStore}>
          <RouterProvider router={allRoutes}/>
+        </Provider>
       </div>
     </>
   )

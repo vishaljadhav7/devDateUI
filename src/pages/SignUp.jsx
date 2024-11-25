@@ -4,18 +4,21 @@ import { signUpSchema } from '../schemas/index';
 import { useFormik } from 'formik';
 import axios from "axios";
 import { BASE_URL } from '../utils/constants';
+import { addUser } from '../utils/userSlice';
+import { useDispatch } from "react-redux";
 
 
 const initialValues = {
-  firstName: "", // Updated to match validation schema
+  firstName: "",
   lastName: "",
   emailId: "",
   password: "",
 };
 
 const SignUp = () => {
-   
-  const [error, setError] = useState('') 
+  const navigate = useNavigate() 
+  const dispatch = useDispatch()
+  const [errorMessage, setErrorMessage] = useState('') 
 
   const { values, handleSubmit, errors, touched, handleBlur, handleChange } = useFormik({
     initialValues,
@@ -29,9 +32,12 @@ const SignUp = () => {
           { firstName, lastName, emailId, password },
           { withCredentials: true }
         );
+
         console.log("res  ", res)
+        dispatch(addUser(res.data))
+        return navigate("/profile");
       } catch (err) {
-        setError(err?.response?.data || "Something went wrong");
+        setErrorMessage(err?.response?.data || "Something went wrong");
       }
     },
   });
@@ -139,6 +145,7 @@ const SignUp = () => {
                 </p>
               </div>
             </div>
+            {errorMessage && <p className="text-red-500 px-2 py-1">{errorMessage}</p>}
           </form>
         </div>
       </div>

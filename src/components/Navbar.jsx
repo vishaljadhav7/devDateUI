@@ -1,10 +1,18 @@
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 
 const Navbar = () => {
-  
-  const user = null;
 
+  const userInfo = useSelector((store) => store.user)
+
+  const user = userInfo ? userInfo?.user : null
+
+  const handleLogout =( ) => {
+
+  }
+
+  console.log("user navbar ", user)
   return (
     <div className="navbar flex justify-between relative z-40 backdrop-blur-lg bg-white/30 shadow-lg">
         <div className="w-[75px]"> 
@@ -14,8 +22,8 @@ const Navbar = () => {
         </div>
        
       { user && <div>
-        <div className="flex gap-10 items-center">
-          <div className="form-control">Welcome, {user.firstName} WarHead</div>
+        <div className="flex gap-2 items-center">
+          <h1 className="form-control font-bold text-teal-500">Welcome, {user.firstName}</h1>
 
           <div className="dropdown dropdown-end mx-5 flex">
             <div
@@ -24,7 +32,7 @@ const Navbar = () => {
               className="btn btn-ghost btn-circle avatar"
             >
               <div className="w-10 rounded-full">
-                <img alt="user photo" src={user.photoUrl} />
+                <img alt="user photo" src={user.photoURL} />
               </div>
             </div>
             <ul
@@ -45,7 +53,7 @@ const Navbar = () => {
                 <Link to="/requests">Requests</Link>
               </li>
               <li>
-                {/* <a onClick={handleLogout}>Logout</a> */}
+                <a onClick={handleLogout}>Logout</a>
               </li>
             </ul>
           </div>
