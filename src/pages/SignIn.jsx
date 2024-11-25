@@ -40,9 +40,8 @@ const SignIn = () => {
         },
         { withCredentials: true }
       );
-      console.log(res)
-      // dispatch(addUser(res.data));
-      // return navigate("/"); // takes us to the feed or core
+      dispatch(addUser(res.data.userInfo));
+      return navigate("/profile"); // takes us to the feed or core
     } catch (err) {
       setErrorMessage(err?.response?.data || "Something went wrong");
     }

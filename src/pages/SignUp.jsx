@@ -26,15 +26,13 @@ const SignUp = () => {
     onSubmit: async (values) => {
       const {firstName, lastName, emailId, password} = values;
       try {
-        console.log("before API call")
         const res = await axios.post(
           BASE_URL + "/auth/signup",
           { firstName, lastName, emailId, password },
           { withCredentials: true }
         );
 
-        console.log("res  ", res)
-        dispatch(addUser(res.data))
+        dispatch(addUser(res.data.userInfo)) 
         return navigate("/profile");
       } catch (err) {
         setErrorMessage(err?.response?.data || "Something went wrong");
@@ -55,7 +53,7 @@ const SignUp = () => {
 
         <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
           <form className="card-body" onSubmit={handleSubmit}>
-            {/* First Name */}
+    
             <div className="form-control">
               <label className="label">
                 <span className="label-text">First Name</span>
@@ -74,7 +72,7 @@ const SignUp = () => {
               )}
             </div>
 
-            {/* Last Name */}
+   
             <div className="form-control">
               <label className="label">
                 <span className="label-text">Last Name</span>
@@ -93,7 +91,7 @@ const SignUp = () => {
               )}
             </div>
 
-            {/* Email */}
+       
             <div className="form-control">
               <label className="label">
                 <span className="label-text">Email</span>
@@ -112,7 +110,7 @@ const SignUp = () => {
               )}
             </div>
 
-            {/* Password */}
+     
             <div className="form-control">
               <label className="label">
                 <span className="label-text">Password</span>
@@ -131,7 +129,7 @@ const SignUp = () => {
               )}
             </div>
 
-            {/* Submit */}
+      
             <div className="flex items-center justify-between mt-2 gap-2">
               <button className="btn btn-primary md:w-[100px]" type="submit">
                 Sign Up
