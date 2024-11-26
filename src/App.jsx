@@ -1,6 +1,6 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Layout from "./components/Layout";
-import Feed from "./components/Feed";
+import Core from "./components/Core";
 import HeroSection from "./pages/HeroSection";
 import SignIn from "./pages/SignIn"
 import SignUp from "./pages/SignUp"
@@ -20,7 +20,7 @@ function App() {
       children : [
         {
           path : "/",
-          element : <Feed/>,
+          element : <Core/>,
           children : [] 
         },
         {

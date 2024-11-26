@@ -53,7 +53,7 @@ const EditProfile = () => {
         { withCredentials: true }
       );
 
-      console.log("res from updated profile",res?.data.userInfo)
+      // console.log("res from updated profile",res?.data.userInfo)
       dispatch(addUser(res?.data.userInfo));
       // setShowToast(true);
     } catch (err) {

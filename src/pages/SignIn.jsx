@@ -17,7 +17,7 @@ const SignIn = () => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
   const [userData, setUserData] = useState(initialValues)
-  const [submit, toggleSubmit] = useState(false)
+  const [isSubmit, toggleSubmit] = useState(false)
   const [errorMessage, setErrorMessage] = useState('')
 
   const handleChange = (e) => {
@@ -41,7 +41,7 @@ const SignIn = () => {
         { withCredentials: true }
       );
       dispatch(addUser(res.data.userInfo));
-      return navigate("/profile"); // takes us to the feed or core
+      return navigate("/"); // takes us to the feed or core
     } catch (err) {
       setErrorMessage(err?.response?.data || "Something went wrong");
     }
@@ -101,7 +101,7 @@ const SignIn = () => {
            className="btn btn-primary w-[100px]"
            onClick={handleSignIn}
            type="submit"
-           disabled={!submit}
+           disabled={!isSubmit}
            >
             Login
           </button>

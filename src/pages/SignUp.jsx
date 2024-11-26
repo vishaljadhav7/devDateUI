@@ -6,6 +6,7 @@ import axios from "axios";
 import { BASE_URL } from '../utils/constants';
 import { addUser } from '../utils/userSlice';
 import { useDispatch } from "react-redux";
+import { useEffect } from 'react';
 
 
 const initialValues = {
@@ -19,6 +20,7 @@ const SignUp = () => {
   const navigate = useNavigate() 
   const dispatch = useDispatch()
   const [errorMessage, setErrorMessage] = useState('') 
+  const [isSubmit, toggleSubmit] = useState(false)
 
   const { values, handleSubmit, errors, touched, handleBlur, handleChange } = useFormik({
     initialValues,
@@ -39,6 +41,13 @@ const SignUp = () => {
       }
     },
   });
+ 
+  useEffect(()=>{
+  const canSubmit = Object.values(values).every(fieldValue => Boolean(fieldValue))
+
+  toggleSubmit(canSubmit)
+
+  }, [values])
 
   return (
     <div className="hero bg-white absolute top-0 min-h-screen pt-[22%] md:pt-[7%]">
@@ -131,7 +140,11 @@ const SignUp = () => {
 
       
             <div className="flex items-center justify-between mt-2 gap-2">
-              <button className="btn btn-primary md:w-[100px]" type="submit">
+              <button 
+              className="btn btn-primary md:w-[100px]" 
+              type="submit"
+              disabled={!isSubmit}
+              >
                 Sign Up
               </button>
               <div className="mt-2">
