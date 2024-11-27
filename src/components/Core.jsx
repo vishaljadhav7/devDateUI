@@ -14,6 +14,7 @@ const Core = () => {
   const user = useSelector((store) => store.user)
   const [errorMessage, setErrorMessage]  = useState('')
 
+
   if(!user){
     navigate('/homepage')
   }
@@ -32,7 +33,7 @@ const Core = () => {
   }
 
   useEffect(()=>{
-      getFeed();
+    getFeed();
   }, [])
 
   
