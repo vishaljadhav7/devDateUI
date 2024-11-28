@@ -2,7 +2,9 @@
 
 const Connections = () => {
   return (
-    <div>Connections</div>
+    <div className="absolute top-0 bg-gray-50 w-screen min-h-screen">
+
+    </div>
   )
 }
 

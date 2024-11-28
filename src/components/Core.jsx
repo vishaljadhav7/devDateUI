@@ -1,23 +1,16 @@
 import axios from "axios"
 import { useEffect, useState } from "react"
 import { useSelector, useDispatch } from "react-redux"
-import { useNavigate } from "react-router-dom"
 import { BASE_URL } from "../utils/constants"
 import { addFeed } from "../utils/coreSlice"
 import UserCard from "./UserCard"
 
 
 const Core = () => {
-  const navigate = useNavigate()
   const dispatch = useDispatch()
   const core = useSelector((store) => store.core)
-  const user = useSelector((store) => store.user)
+
   const [errorMessage, setErrorMessage]  = useState('')
-
-
-  if(!user){
-    navigate('/homepage')
-  }
 
   const getFeed = async () =>{
     if(core) return

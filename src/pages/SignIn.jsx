@@ -3,7 +3,7 @@ import { Link } from "react-router-dom"
 import { BASE_URL } from "../utils/constants"
 import axios  from "axios"
 import { addUser } from "../utils/userSlice"
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { useNavigate } from "react-router-dom"
 
 
@@ -16,6 +16,7 @@ const SignIn = () => {
 
   const navigate = useNavigate()
   const dispatch = useDispatch()
+  const user = useSelector(store => store.user)
   const [userData, setUserData] = useState(initialValues)
   const [isSubmit, toggleSubmit] = useState(false)
   const [errorMessage, setErrorMessage] = useState('')
@@ -53,6 +54,12 @@ const SignIn = () => {
      const canSubmit = Object.values(userData).every(value => Boolean(value))
      toggleSubmit(canSubmit)
   }, [userData])
+
+ useEffect(()=>{
+  if(user) {
+    navigate("/")
+   } 
+ })
 
   return (
     <div className="hero bg-white absolute top-0 min-h-screen pt-[10%] md:pt-[5%] ">

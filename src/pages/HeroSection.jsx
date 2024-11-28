@@ -1,8 +1,23 @@
 
 import {HERO_URL} from '../utils/constants'
 import { Link } from 'react-router-dom'
+import { useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
+import { useEffect } from 'react'
+
 
 const HeroSection = () => {
+  const navigate = useNavigate()
+  
+  const user = useSelector((store) => store.user);
+
+  useEffect(() => {
+   if(user){
+    navigate("/")
+   }
+  })
+
+
   return (
     <div
     className="hero h-screen fixed top-0"

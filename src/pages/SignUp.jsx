@@ -5,7 +5,7 @@ import { useFormik } from 'formik';
 import axios from "axios";
 import { BASE_URL } from '../utils/constants';
 import { addUser } from '../utils/userSlice';
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from 'react';
 
 
@@ -19,6 +19,7 @@ const initialValues = {
 const SignUp = () => {
   const navigate = useNavigate() 
   const dispatch = useDispatch()
+  const user = useSelector(store => store.user)
   const [errorMessage, setErrorMessage] = useState('') 
   const [isSubmit, toggleSubmit] = useState(false)
 
@@ -48,6 +49,12 @@ const SignUp = () => {
   toggleSubmit(canSubmit)
 
   }, [values])
+
+  useEffect(()=>{
+    if(user) {
+      navigate("/")
+     } 
+   })
 
   return (
     <div className="hero bg-white absolute top-0 min-h-screen pt-[22%] md:pt-[7%]">

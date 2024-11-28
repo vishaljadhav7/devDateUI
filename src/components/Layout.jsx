@@ -19,13 +19,8 @@ const Layout = () => {
         const res = await axios.get(BASE_URL + "/profile/view", {
           withCredentials: true,
         });
-    
-      //  console.log("res.data from layout ", res.data)
-      console.log("fetching data again")
-
-       dispatch(addUser(res.data))
+       dispatch(addUser(res?.data))
       } catch (error) {
-        console.log("error.status from layout ", error.status , error.status === 400)
         if(error.status === 400){
           navigate('/signin')
         }
@@ -34,7 +29,7 @@ const Layout = () => {
 
    useEffect(()=>{
     getUserInfo()
-   }, [] )
+   }, [])
 
   return (
     <div className=''>

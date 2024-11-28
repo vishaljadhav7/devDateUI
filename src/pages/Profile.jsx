@@ -9,6 +9,7 @@ const Profile = () => {
   const profile = useSelector((store) => store.profile)
   const user = useSelector((store) => store.user);
 
+     
 
   return (
     <div className="absolute top-0 bg-gray-50 w-screen min-h-screen flex justify-center items-center p-6">
@@ -40,7 +41,7 @@ const Profile = () => {
             <h2 className="text-xl font-semibold text-gray-800 mb-2">
               Skills
             </h2>
-            {user?.skills.length > 0 ? (
+            {user?.skills?.length > 0 ? (
               <div className="flex flex-wrap gap-2">
                 {user?.skills.map((skill, index) => (
                   <span
@@ -79,7 +80,7 @@ const Profile = () => {
         </div>
       )}
 
-      {profile.showEditProfile && <EditProfile/>}
+      {profile?.showEditProfile && <EditProfile/>}
     </div>
   );
 };
