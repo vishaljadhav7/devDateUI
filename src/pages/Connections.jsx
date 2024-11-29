@@ -15,7 +15,7 @@ const Connections = () => {
         withCredentials: true,
       });
       dispatch(addConnections(res.data.myConnections));
-      console.log(res)
+      // console.log(res)
       setError(null); // Clear any previous error
     } catch (error) {
       setError("Failed to fetch connections. Please try again later.");
@@ -23,7 +23,7 @@ const Connections = () => {
   };
 
   useEffect(() => {
-    console.log("fetching connections")
+    // console.log("fetching connections")
     getConnectionInvites();
   }, []);
 
@@ -45,7 +45,7 @@ const Connections = () => {
   return (
     <div className="absolute top-0 bg-white w-screen h-screen flex flex-col items-center pt-[25%] md:pt-[8%]">
       <h1 className="text-2xl font-bold text-gray-800 mb-6">Connections</h1>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full px-4 md:px-10">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full px-4 md:px-10 overflow-y-scroll">
         {connections?.map((connection) => {
           if (!connection) return null;
           const { _id, firstName, lastName, photoURL, age, about, skills } = connection;
