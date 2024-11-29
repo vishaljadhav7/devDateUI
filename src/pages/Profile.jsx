@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { useSelector } from "react-redux";
 import EditProfile from "../components/EditProfile";
 import { useDispatch } from "react-redux";
@@ -12,11 +11,11 @@ const Profile = () => {
      
 
   return (
-    <div className="absolute top-0 bg-gray-50 w-screen min-h-screen flex justify-center items-center p-6">
+    <div className="absolute top-0 bg-white w-screen min-h-screen flex justify-center items-center p-6">
       {user && (
-        <div className="bg-white shadow-xl rounded-lg max-w-md w-full p-6 md:max-w-lg lg:max-w-xl md:mt-[7%] mt-10 relative">
+        <div className=" shadow-xl max-w-md w-full p-6 md:max-w-lg lg:max-w-xl md:mt-[7%] mt-10 relative  bg-slate-400 rounded-md bg-clip-padding backdrop-filter backdrop-blur-xl bg-opacity-20 border border-gray-100">
    
-          <button className="absolute top-4 right-4 btn btn-sm btn-outline btn-primary" onClick={()=> dispatch(toggleEditProfileView(true))}>
+          <button className="absolute top-4 right-4 btn btn-sm btn-outline btn-primary " onClick={()=> dispatch(toggleEditProfileView(true))}>
             Edit Profile
           </button>
 
@@ -25,7 +24,7 @@ const Profile = () => {
             <img
               src={user?.photoURL}
               alt={`${user?.firstName} ${user?.lastName}`}
-              className="w-24 h-24 md:w-28 md:h-28 rounded-full border-4 border-primary shadow-sm"
+              className="w-24 h-24 md:w-28 md:h-28 rounded-full border-4 border-primary shadow-sm object-cover"
             />
             <h1 className="text-2xl md:text-3xl font-bold mt-4 text-gray-800 text-center">
               {user?.firstName} {user?.lastName}

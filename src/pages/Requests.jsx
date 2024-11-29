@@ -10,12 +10,12 @@ const Requests = () => {
   const [errorMessage, setErrorMessage] = useState("");
 
   const getRequests = async () => {
-    if (requests?.length > 0) return;
+    // if (requests?.length > 0) return;
     try {
       const res = await axios.get(BASE_URL + "/user/request/received", {
         withCredentials: true,
       });
-      console.log("res.data.allConnectionRequests ", res.data.allConnectionRequests);
+      // console.log("res.data.allConnectionRequests ", res.data.allConnectionRequests);
       dispatch(addRequest(res.data.allConnectionRequests));
       setErrorMessage(""); // Clear any previous error
     } catch (error) {
@@ -31,7 +31,7 @@ const Requests = () => {
         {},
         { withCredentials: true }
       );
-      console.log("res.data from handleRequestReview", res?.data);
+      // console.log("res.data from handleRequestReview", res?.data);
       dispatch(removeRequest(requestId));
       setErrorMessage(""); // Clear any previous error
     } catch (error) {
@@ -44,15 +44,15 @@ const Requests = () => {
     getRequests();
   }, []);
 
-  if (!requests) return;
+  // if (!requests) return;
 
   if (requests?.length === 0)
     return <h1 className="absolute top-0 bg-gray-50 w-screen h-screen flex justify-center items-center text-3xl text-black">No Requests Found</h1>;
 
   return (
     <div className="absolute top-0 bg-gray-50 w-screen h-screen ">
-      <div className="h-full w-full  py-10 px-4 flex flex-col justify-center items-center">
-        <h1 className="text-bold text-black text-3xl mb-6">Connect Invitations</h1>
+      <div className="h-full w-full py-10 px-4 flex flex-col justify-center items-center pt-[30%] md:pt-[10%]">
+        <h1 className="text-bold text-black text-3xl mb-4">Connect Invitations</h1>
 
         {/* Display Error Message */}
         {errorMessage && (
@@ -61,9 +61,12 @@ const Requests = () => {
           </div>
         )}
 
-        <div className="flex flex-col gap-7 md:w-[70%] w-full items-center">
+        <div className="flex flex-col gap-7 md:w-[70%]  w-full items-center overflow-y-scroll">
           {requests.map((request) => {
             const { fromUserId, _id } = request;
+
+            if(!fromUserId) return
+            
             return (
               <div
                 key={_id}
@@ -71,7 +74,7 @@ const Requests = () => {
               >
                 <div className="flex items-center space-x-4">
                   <img
-                    src={fromUserId.photoURL || "https://via.placeholder.com/50"}
+                    src={fromUserId?.photoURL || "https://via.placeholder.com/50"}
                     alt={`${fromUserId.firstName} ${fromUserId.lastName}`}
                     className="w-12 h-12 rounded-full"
                   />

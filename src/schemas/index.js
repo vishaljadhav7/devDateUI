@@ -8,7 +8,7 @@ export const signUpSchema = Yup.object({
 
     lastName : Yup.string()    
     .min(4, "last name must be at least 4 characters")
-    .max(8, "last name must be at most 8 characters")
+    .max(10, "last name must be at most 8 characters")
     .required("Please enter your last name"),
  
     emailId: Yup.string() 

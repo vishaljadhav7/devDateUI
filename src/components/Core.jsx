@@ -13,7 +13,7 @@ const Core = () => {
   const [errorMessage, setErrorMessage]  = useState('')
 
   const getFeed = async () =>{
-    if(core) return
+    // if(core) return
     try {
       const res = await axios.get(BASE_URL + "/user/core", {
         withCredentials : true,
@@ -36,7 +36,11 @@ const Core = () => {
   }
  
   if (core?.length <= 0){
-    return <h1 className="text-3xl text-teal-500 font-bold flex justify-center pt-[30%]">No new users founds!</h1>;
+    return (
+      <div className=" absolute top-0 bg-white w-screen min-h-screen flex justify-center items-center">
+        <h1 className="text-3xl text-teal-500 font-bold ">No users left!</h1>
+      </div>
+    )
   }
   
 
