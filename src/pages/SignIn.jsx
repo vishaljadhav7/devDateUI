@@ -62,13 +62,12 @@ const SignIn = () => {
  })
 
   return (
-    <div className="hero bg-white absolute top-0 min-h-screen pt-[10%] md:pt-[5%] ">
+    <div className="hero bg-white absolute top-0 min-h-screen pt-[10%] md:pt-[5%] bg-gradient-to-r from-purple-200 via-violet-400 to-indigo-600">
     <div className="hero-content flex-col lg:flex-row-reverse ">
      <div className="text-center lg:text-left">
-       <h1 className="text-5xl font-bold">Sign In Now!</h1>
+       <h1 className="text-5xl font-bold text-black">Welcome Back, Dev!</h1>
        <p className="py-6 hidden md:block text-black">
-         Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem
-         quasi. In deleniti eaque aut repudiandae et a id nisi.
+       Great to see you again! Log in and continue connecting with fellow techies. Your next match might be just a click away.
        </p>
      </div>
  

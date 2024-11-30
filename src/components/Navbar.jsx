@@ -5,6 +5,9 @@ import { removeUser } from "../utils/userSlice";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
+import { clearConnections } from "../utils/connectionSlice"; 
+import { clearRequests } from "../utils/requestSlice";
+
 
 const Navbar = () => {
 
@@ -17,6 +20,8 @@ const Navbar = () => {
     try {
       await axios.post(BASE_URL + "/auth/signout", {}, { withCredentials: true });
       dispatch(removeUser());
+      dispatch(clearConnections())
+      dispatch(clearRequests())
       return navigate("/signin");
     } catch (err) {
       // Error logic maybe redirect to error page

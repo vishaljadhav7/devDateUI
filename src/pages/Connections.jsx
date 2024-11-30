@@ -15,7 +15,7 @@ const Connections = () => {
         withCredentials: true,
       });
       dispatch(addConnections(res.data.myConnections));
-      // console.log(res)
+       console.log("res.data.myConnections from connections ", res.data)
       setError(null); // Clear any previous error
     } catch (error) {
       setError("Failed to fetch connections. Please try again later.");
@@ -49,6 +49,8 @@ const Connections = () => {
         {connections?.map((connection) => {
           if (!connection) return null;
           const { _id, firstName, lastName, photoURL, age, about, skills } = connection;
+
+          // console.log("key ", _id)
 
           return (
             <div
