@@ -16,7 +16,7 @@ const Requests = () => {
         withCredentials: true,
       });
       // console.log("res.data.allConnectionRequests ", res.data.allConnectionRequests);
-      dispatch(addRequest(res.data.allConnectionRequests));
+      dispatch(addRequest(res.data.data));
       setErrorMessage(""); // Clear any previous error
     } catch (error) {
       console.error("Error fetching requests:", error);
@@ -47,10 +47,10 @@ const Requests = () => {
   // if (!requests) return;
 
   if (requests?.length === 0)
-    return <h1 className="absolute top-0 bg-gray-50 w-screen h-screen flex justify-center items-center text-3xl text-black">No Requests Found</h1>;
+    return <h1 className="absolute top-0 bg-white w-screen h-screen flex justify-center items-center text-3xl text-black">No Requests Found</h1>;
 
   return (
-    <div className="absolute top-0 bg-gray-50 w-screen h-screen ">
+    <div className="absolute top-0 bg-white  w-screen h-screen ">
       <div className="h-full w-full py-10 px-4 flex flex-col justify-center items-center pt-[30%] md:pt-[10%]">
         <h1 className="text-bold text-black text-3xl mb-4">Connect Invitations</h1>
 

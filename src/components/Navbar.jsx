@@ -27,69 +27,75 @@ const Navbar = () => {
       // Error logic maybe redirect to error page
     }
   }
-
   return (
-    <div className="navbar flex justify-between relative z-40 backdrop-blur-lg bg-white/30 shadow-lg">
-        <div className="w-[75px]"> 
-          <img className="rounded-lg" src="./devdate_logo.jpg" alt="logo"/>
-        </div>
-       
+    <div className="navbar flex justify-between items-center px-4 py-2 bg-white/30 backdrop-blur-lg shadow-lg relative z-40 w-screen">
+      {/* Text Logo */}
+      <div className="text-3xl font-bold text-[#374151]">
+       <Link to="/">Dev<span className="text-[#10B981]">Dates</span></Link>
+     </div>
 
-      { user ? 
-      (<div>
-        <div className="flex gap-2 items-center">
-          <h1 className="form-control font-bold text-teal-500">Welcome, {user.firstName}</h1>
 
-          <div className="dropdown dropdown-end mx-5 flex">
+      {/* User Section */}
+      {user ? (
+        <div className="flex gap-4 items-center">
+          <h1 className="font-medium text-lg text-gray-700 hidden md:block">
+            Welcome, <span className="font-bold text-[#4F46E5]">{user.firstName}</span>
+          </h1>
+
+          {/* User Dropdown */}
+          <div className="dropdown dropdown-end relative">
             <div
               tabIndex={0}
               role="button"
-              className="btn btn-ghost btn-circle avatar"
+              className="btn btn-ghost btn-circle avatar hover:shadow-md"
             >
-              <div className="w-10 rounded-full">
-                <img alt="user photo" src={user.photoURL} />
+              <div className="w-10 h-10 rounded-full border-2 border-[#4F46E5] overflow-hidden">
+                <img
+                  alt="user avatar"
+                  src={user.photoURL || "/default_avatar.png"}
+                  className="object-cover"
+                />
               </div>
             </div>
             <ul
               tabIndex={0}
-              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
-            >      
-               <li>
-                <Link to="/">Feed</Link>
-              </li>
-
+              className="menu dropdown-content mt-3 w-52 bg-white rounded-lg shadow-lg z-50 p-2"
+            >
               <li>
-                <Link to="/profile" className="justify-between">
+                <Link to="/" className="hover:text-[#4F46E5]">Feed</Link>
+              </li>
+              <li>
+                <Link to="/profile" className="flex justify-between hover:text-[#4F46E5]">
                   Profile
-                  <span className="badge">New</span>
+                  <span className="badge bg-[#14B8A6] text-white">New</span>
                 </Link>
               </li>
               <li>
-                <Link to="/connections">Connections</Link>
+                <Link to="/connections" className="hover:text-[#4F46E5]">Connections</Link>
               </li>
-
               <li>
-                <Link to="/requests">Requests</Link>
+                <Link to="/requests" className="hover:text-[#4F46E5]">Requests</Link>
               </li>
-
-             
               <li>
-                <a onClick={handleLogout}>Logout</a>
+                <a onClick={handleLogout} className="text-red-600 hover:text-red-800 cursor-pointer">
+                  Logout
+                </a>
               </li>
             </ul>
           </div>
         </div>
-      </div> ) :    
-
-      (<div className="p-2">
-          <Link to={"/homePage"}>
-             <button className="btn">Home</button>
+      ) : (
+        // Guest View
+        <div className="p-2">
+          <Link to="/homePage">
+            <button className="btn bg-[#4F46E5] text-white px-4 py-2 rounded-lg hover:bg-[#3B32C4] transition-all">
+              Home
+            </button>
           </Link>
-        </div>)
-         
-      }
+        </div>
+      )}
     </div>
-  )
+  );
 }
 
 export default Navbar

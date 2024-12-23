@@ -41,7 +41,8 @@ const SignIn = () => {
         },
         { withCredentials: true }
       );
-      dispatch(addUser(res.data.userInfo));
+      console.log("data from sign in ", res.data.data, res.data)
+      dispatch(addUser(res.data.data));
       return navigate("/"); // takes us to the feed or core
     } catch (err) {
       setErrorMessage(err?.response?.data || "Something went wrong");

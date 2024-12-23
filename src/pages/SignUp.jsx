@@ -35,7 +35,9 @@ const SignUp = () => {
           { withCredentials: true }
         );
 
-        dispatch(addUser(res.data.userInfo)) 
+        console.log("data from sign up ", res.data.data, res.data)
+
+        dispatch(addUser(res.data.data)) 
         return navigate("/profile");
       } catch (err) {
         setErrorMessage(err?.response?.data || "Something went wrong");

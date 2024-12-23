@@ -18,6 +18,8 @@ const Core = () => {
       const res = await axios.get(BASE_URL + "/user/core", {
         withCredentials : true,
       })
+
+      console.log("res from core ", res?.data?.data , res?.data)
      
       dispatch(addFeed(res?.data?.data))
     } catch (error) {
@@ -32,13 +34,13 @@ const Core = () => {
   
 
   if(errorMessage){
-    return <h1 className="text-3xl text-teal-500 font-bold flex justify-center pt-[30%]">OOPS {errorMessage}!</h1>  
+    return <h1 className="text-3xl text-black font-bold flex justify-center pt-[30%]">OOPS {errorMessage}!</h1>  
   }
  
   if (core?.length <= 0){
     return (
-      <div className=" absolute top-0 bg-white w-screen min-h-screen flex justify-center items-center">
-        <h1 className="text-3xl text-teal-500 font-bold ">No users left!</h1>
+      <div className=" absolute top-0 bg-white  w-screen min-h-screen flex justify-center items-center">
+        <h1 className="text-3xl  font-bold text-black">No users left!</h1>
       </div>
     )
   }

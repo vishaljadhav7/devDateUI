@@ -53,11 +53,9 @@ function App() {
   
   return (
     <>
-      <div className="w-screen min-h-fit relative bg-red-300" >
         <Provider store={appStore}>
          <RouterProvider router={allRoutes}/>
         </Provider>
-      </div>
     </>
   )
 }
