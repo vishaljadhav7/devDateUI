@@ -10,6 +10,7 @@ import Requests from "./pages/Requests";
 // import Footer from "./components/Footer";
 import { Provider } from "react-redux";
 import appStore from "./utils/appStore";
+import Chat from "./pages/Chat";
 
 function App() {
 
@@ -46,6 +47,10 @@ function App() {
         {
           path : "/requests",
           element : <Requests/>
+        },
+        {
+          path : "/chat/:toUserId",
+          element : <Chat/>
         }
       ]
     }

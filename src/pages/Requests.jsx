@@ -3,15 +3,18 @@ import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import { BASE_URL } from "../utils/constants";
 import { addRequest, removeRequest } from "../utils/requestSlice";
+import ShimmerLoader from '../components/Shimmer'
 
 const Requests = () => {
   const dispatch = useDispatch();
   const requests = useSelector((store) => store.request);
   const [errorMessage, setErrorMessage] = useState("");
+  const [loading, setLoading] = useState(false)
 
   const getRequests = async () => {
     // if (requests?.length > 0) return;
     try {
+      setLoading(true)
       const res = await axios.get(BASE_URL + "/user/request/received", {
         withCredentials: true,
       });
@@ -21,6 +24,8 @@ const Requests = () => {
     } catch (error) {
       console.error("Error fetching requests:", error);
       setErrorMessage("Failed to load requests. Please try again later.");
+    }finally{
+      setLoading(false)
     }
   };
 
@@ -48,6 +53,11 @@ const Requests = () => {
 
   if (requests?.length === 0)
     return <h1 className="absolute top-0 bg-white w-screen h-screen flex justify-center items-center text-3xl text-black">No Requests Found</h1>;
+
+  if(loading){
+    return <ShimmerLoader/>
+}
+
 
   return (
     <div className="absolute top-0 bg-white  w-screen h-screen ">

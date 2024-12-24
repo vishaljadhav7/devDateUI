@@ -1,16 +1,21 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
+import { Link } from "react-router-dom";
 import { BASE_URL } from "../utils/constants";
 import { addConnections } from "../utils/connectionSlice";
+import ShimmerLoader from '../components/Shimmer'
+
 
 const Connections = () => {
   const dispatch = useDispatch();
   const connections = useSelector((store) => store.connections);
   const [error, setError] = useState(null); // State to handle errors
+  const [loading, setLoading] = useState(false)
 
   const getConnectionInvites = async () => {
     try {
+      setLoading(true)
       const res = await axios.get(BASE_URL + "/user/connections", {
         withCredentials: true,
       });
@@ -19,6 +24,8 @@ const Connections = () => {
       setError(null); // Clear any previous error
     } catch (error) {
       setError("Failed to fetch connections. Please try again later.");
+    } finally{
+      setLoading(false)
     }
   };
 
@@ -42,13 +49,17 @@ const Connections = () => {
       </h1>
     );
 
+    if(loading){
+        return <ShimmerLoader/>
+    }
+
   return (
     <div className="absolute top-0 bg-white w-screen h-screen flex flex-col items-center pt-[25%] md:pt-[8%]">
       <h1 className="text-2xl font-bold text-gray-800 mb-6">Connections</h1>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full px-4 md:px-10 overflow-y-scroll">
         {connections?.map((connection) => {
           if (!connection) return null;
-          const { _id, firstName, lastName, photoURL, age, about, skills } = connection;
+          const { _id, firstName, lastName, photoURL} = connection;
 
           // console.log("key ", _id)
 
@@ -70,12 +81,13 @@ const Connections = () => {
                 </div>
               </div>
     
-
+           <Link to={`/chat/${_id}`}>           
               <button
                 className="mt-4 bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition-colors w-[100px]"
               >
                 Chat
               </button>
+           </Link>
             </div>
           );
         })}
