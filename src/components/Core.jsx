@@ -19,7 +19,6 @@ const Core = () => {
         withCredentials : true,
       })
 
-      console.log("res from core ", res?.data?.data , res?.data)
      
       dispatch(addFeed(res?.data?.data))
     } catch (error) {

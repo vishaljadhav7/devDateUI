@@ -11,6 +11,7 @@ import Requests from "./pages/Requests";
 import { Provider } from "react-redux";
 import appStore from "./utils/appStore";
 import Chat from "./pages/Chat";
+import { WebSocketProvider } from "./context/WebSocketContext";
 
 function App() {
 
@@ -58,9 +59,11 @@ function App() {
   
   return (
     <>
+      <WebSocketProvider>
         <Provider store={appStore}>
          <RouterProvider router={allRoutes}/>
         </Provider>
+      </WebSocketProvider>
     </>
   )
 }

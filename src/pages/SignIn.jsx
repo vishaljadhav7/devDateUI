@@ -41,7 +41,6 @@ const SignIn = () => {
         },
         { withCredentials: true }
       );
-      console.log("data from sign in ", res.data.data, res.data)
       dispatch(addUser(res.data.data));
       return navigate("/"); // takes us to the feed or core
     } catch (err) {
