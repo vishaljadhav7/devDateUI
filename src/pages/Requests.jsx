@@ -33,7 +33,11 @@ const Requests = () => {
       const res = await axios.post(
         `${BASE_URL}/request/review/${status}/${requestId}`,
         {},
-        { withCredentials: true }
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem('token')}`
+          },
+        }
       );
       dispatch(removeRequest(requestId));
       setErrorMessage(""); // Clear any previous error

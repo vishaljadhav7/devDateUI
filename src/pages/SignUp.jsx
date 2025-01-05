@@ -36,6 +36,7 @@ const SignUp = () => {
         );
 
         dispatch(addUser(res.data.data)) 
+        localStorage.setItem("token", res.data.token);
         return navigate("/profile");
       } catch (err) {
         setErrorMessage(err?.response?.data || "Something went wrong");

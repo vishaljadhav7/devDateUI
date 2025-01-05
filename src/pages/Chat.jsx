@@ -26,7 +26,11 @@ const Chat = () => {
                     receiverId: toUserId,
                     message,
                 },
-                { withCredentials: true }
+                { 
+                 headers: {
+                     Authorization: `Bearer ${localStorage.getItem('token')}`
+                   },
+                }
             );
             setMessages( (prev) => [...prev, { message, senderId: user._id, createdAt: new Date().toISOString() }]); 
             setMessage('');
@@ -39,7 +43,9 @@ const Chat = () => {
     const getMessages = async () => {
         try {
             const res = await axios.get(`${BASE_URL}/chat/get-message/${toUserId}`, {
-                withCredentials: true,
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem('token')}`
+                  },
             });
             setParticipants(res?.data.data.participants);
             setMessages(res?.data.data.messages);

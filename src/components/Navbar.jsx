@@ -18,13 +18,18 @@ const Navbar = () => {
    
   const handleLogout = async ( ) => {
     try {
-      await axios.post(BASE_URL + "/auth/signout", {}, { withCredentials: true });
+      await axios.post(BASE_URL + "/auth/signout", {}, { 
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}`
+        },
+      });
       dispatch(removeUser());
       dispatch(clearConnections())
       dispatch(clearRequests())
       return navigate("/signin");
     } catch (err) {
       // Error logic maybe redirect to error page
+      console.error(err)
     }
   }
   return (

@@ -13,7 +13,9 @@ const UserCard = ({user}) => {
    try {
      const res = await axios.post(BASE_URL + "/request/send/" + status + "/" + toUserId, {} ,
         {
-        withCredentials : true,
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem('token')}`
+          },
         }
      ); 
      dispatch(removeUserFromFeed(toUserId)); 

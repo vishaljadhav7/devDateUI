@@ -42,6 +42,7 @@ const SignIn = () => {
         { withCredentials: true }
       );
       dispatch(addUser(res.data.data));
+      localStorage.setItem("token", res.data.token);
       return navigate("/"); // takes us to the feed or core
     } catch (err) {
       setErrorMessage(err?.response?.data || "Something went wrong");

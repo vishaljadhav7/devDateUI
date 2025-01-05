@@ -20,9 +20,11 @@ const Core = () => {
     try {
       setLoading(true);
       const res = await axios.get(BASE_URL + "/user/core", {
-        withCredentials : true,
         params: {
           page: 1
+        },
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}`
         },
       })
      
