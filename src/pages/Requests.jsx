@@ -35,7 +35,6 @@ const Requests = () => {
         {},
         { withCredentials: true }
       );
-      // console.log("res.data from handleRequestReview", res?.data);
       dispatch(removeRequest(requestId));
       setErrorMessage(""); // Clear any previous error
     } catch (error) {

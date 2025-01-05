@@ -60,7 +60,7 @@ const Core = () => {
     )
   }
 
-  console.log("core from feed comp ", core)
+
   
 
 

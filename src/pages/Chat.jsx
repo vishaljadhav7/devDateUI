@@ -68,7 +68,6 @@ const Chat = () => {
     useEffect(()=>{
         const receiverInfo = participants?.find((participant) => {
             if (participant) {
-                console.log(participant._id , user._id)
                 return user._id !== participant._id;
             }
         });

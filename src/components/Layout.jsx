@@ -19,7 +19,6 @@ const Layout = () => {
         const res = await axios.get(BASE_URL + "/profile/view", {
           withCredentials: true,
         });
-        console.log("from profile ", res.data.data , res.data)
        dispatch(addUser(res?.data))
       } catch (error) {
         if(error.status === 400){

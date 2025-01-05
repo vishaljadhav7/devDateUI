@@ -29,7 +29,6 @@ const Connections = () => {
   };
 
   useEffect(() => {
-    // console.log("fetching connections")
     getConnectionInvites();
   }, []);
 
@@ -60,7 +59,6 @@ const Connections = () => {
           if (!connection) return null;
           const { _id, firstName, lastName, photoURL} = connection;
 
-          // console.log("key ", _id)
 
           return (
             <div
