@@ -44,6 +44,7 @@ const Requests = () => {
   };
 
   useEffect(() => {
+    if(requests?.length) return
     getRequests();
   }, []);
 

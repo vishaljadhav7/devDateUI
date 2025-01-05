@@ -29,6 +29,7 @@ const Connections = () => {
   };
 
   useEffect(() => {
+    if(connections?.length) return
     getConnectionInvites();
   }, []);
 

@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from "react-redux"
 import { BASE_URL } from "../utils/constants"
 import { addFeed } from "../utils/coreSlice"
 import UserCard from "./UserCard"
+import ShimmerCard from '../components/ShimmerCard';
 
 
 const Core = () => {
@@ -66,13 +67,13 @@ const Core = () => {
 
   return (
     <div className=" absolute top-0 bg-white w-screen min-h-screen flex justify-center items-center pt-[5%]">
-        <UserCard user={core && core[0] || []} />
+       {core?.length >= 0 && (
+        <UserCard user={core && core[0] || []} /> 
+       )}
 
-        {loading && (
-          <div className="w-auto">
-             <h1 className="text-black font-semibold text-2xl text-center">Loading....</h1>
-          </div>
-        )}
+        {loading ? (
+          <ShimmerCard/>
+        ) : null}
 
     </div>
   )
