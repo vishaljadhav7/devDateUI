@@ -24,8 +24,6 @@ const EditProfile = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
-    //  setError("");
 
      const  {
       firstName,
@@ -37,9 +35,9 @@ const EditProfile = () => {
     } = formData
 
     try {
-      // setTimeout(() => {
-      //   dispatch(toggleEditProfileView(false))
-      // }, 3000);
+      setTimeout(() => {
+        dispatch(toggleEditProfileView(false))
+      }, 1000);
       const res = await axios.patch(
         BASE_URL + "/profile/edit",
         {
@@ -53,8 +51,8 @@ const EditProfile = () => {
         { withCredentials: true }
       );
 
-      // console.log("res from updated profile",res?.data.userInfo)
-      dispatch(addUser(res?.data.userInfo));
+
+      dispatch(addUser(res?.data.data));
       // setShowToast(true);
     } catch (err) {
       setError(err.response.data);

@@ -1,9 +1,10 @@
 import  { createContext, useContext, useEffect } from 'react';
 import { io } from 'socket.io-client';
+import {BASE_URL} from  '../utils/constants'
 
 export const WebSocketContext = createContext()
 
-const socket = io(`${import.meta.env.VITE_BASE_URL}`); 
+const socket = io(BASE_URL); 
 
 export const WebSocketProvider = ({children}) => {
  

@@ -9,26 +9,33 @@ import UserCard from "./UserCard"
 const Core = () => {
   const dispatch = useDispatch()
   const core = useSelector((store) => store.core)
+  const [loading, setLoading] = useState(false);
+  const [page, setPage] = useState(1);
 
   const [errorMessage, setErrorMessage]  = useState('')
 
   const getFeed = async () =>{
     // if(core) return
     try {
+      setLoading(true);
       const res = await axios.get(BASE_URL + "/user/core", {
         withCredentials : true,
+        params: {
+          page: 1
+        },
       })
-
      
       dispatch(addFeed(res?.data?.data))
     } catch (error) {
       setErrorMessage(error.message || 'Something went wrong')
+    } finally {
+      setLoading(false);
     }
   }
-
+  
   useEffect(()=>{
     getFeed();
-  }, [])
+  }, [page])
 
   
 
@@ -39,16 +46,34 @@ const Core = () => {
   if (core?.length <= 0){
     return (
       <div className=" absolute top-0 bg-white  w-screen min-h-screen flex justify-center items-center">
-        <h1 className="text-3xl  font-bold text-black">No users left!</h1>
+         <div className="p-4 flex flex-col gap-5">
+         <h1 className="text-3xl  font-bold text-black">No users left!</h1>
+           <button 
+           className="btn btn-outline" 
+           onClick={()=> setPage(prev => prev + 1)}
+           disabled={loading} 
+           >
+            Load More!
+          </button>
+         </div>
       </div>
     )
   }
+
+  console.log("core from feed comp ", core)
   
 
 
   return (
     <div className=" absolute top-0 bg-white w-screen min-h-screen flex justify-center items-center pt-[5%]">
         <UserCard user={core && core[0] || []} />
+
+        {loading && (
+          <div className="w-auto">
+             <h1 className="text-black font-semibold text-2xl text-center">Loading....</h1>
+          </div>
+        )}
+
     </div>
   )
 }

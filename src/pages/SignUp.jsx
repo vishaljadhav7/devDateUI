@@ -35,8 +35,6 @@ const SignUp = () => {
           { withCredentials: true }
         );
 
-        console.log("data from sign up ", res.data.data, res.data)
-
         dispatch(addUser(res.data.data)) 
         return navigate("/profile");
       } catch (err) {
@@ -54,12 +52,12 @@ const SignUp = () => {
 
   useEffect(()=>{
     if(user) {
-      navigate("/")
+      navigate("/profile")
      } 
    })
 
   return (
-    <div className="hero bg-white absolute top-0 min-h-screen pt-[22%] md:pt-[7%] bg-gradient-to-r from-purple-200 via-violet-400 to-indigo-600 overflow-y-scroll overflow-x-hidden">
+    <div className="hero bg-white absolute top-0 min-h-screen  pt-[22%] md:pt-[7%] bg-gradient-to-r from-purple-200 via-violet-400 to-indigo-600 overflow-y-scroll overflow-x-hidden">
       <div className="hero-content flex-col lg:flex-row-reverse">
         <div className="text-center lg:text-left">
           <h1 className="text-2xl  md:text-3xl font-bold text-black">Start Your DevDates Journey Today!</h1>
@@ -69,7 +67,7 @@ const SignUp = () => {
           </p>
         </div>
 
-        <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
+        <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl md:mr-10">
           <form className="card-body" onSubmit={handleSubmit}>
     
             <div className="form-control">

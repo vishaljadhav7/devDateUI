@@ -2,7 +2,7 @@ import axios from "axios"
 import { BASE_URL } from "../utils/constants"
 import { removeUserFromFeed } from "../utils/coreSlice"
 import { useDispatch } from "react-redux"
-import { useState } from "react"
+import { useMemo, useState } from "react"
 
 const UserCard = ({user}) => {
   const {_id, firstName, lastName, photoURL, age, gender, about, skills } = user;
@@ -21,6 +21,8 @@ const UserCard = ({user}) => {
     setErrorMessage(error.message || 'Something went wrong')
    }
   }
+
+  const aboutInfo = about?.length > 100 ? about?.slice(0,100) : about;
   
   return (
     <div className=" max-w-sm md:w-[330px] mx-auto bg-white rounded-lg shadow-md overflow-hidden transform transition duration-300 hover:scale-105">
@@ -33,7 +35,7 @@ const UserCard = ({user}) => {
       <h2 className="text-2xl font-semibold text-gray-800">
         {firstName} {lastName}, {age}
       </h2>
-      <p className="text-gray-600 mt-2">{about}</p>
+      <p className="text-gray-600 mt-2">{aboutInfo} ...</p>
       <div className="mt-3">
         <h3 className="text-gray-800 font-semibold">Skills:</h3>
         <ul className="flex flex-wrap gap-2 mt-1">

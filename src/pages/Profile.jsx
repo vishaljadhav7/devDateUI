@@ -13,7 +13,7 @@ const Profile = () => {
   return (
     <div className="absolute top-0 bg-white w-screen min-h-screen flex justify-center items-center p-6">
       {user && (
-        <div className=" shadow-xl max-w-md w-full p-6 md:max-w-lg lg:max-w-xl md:mt-[7%] mt-10 relative  bg-slate-400 rounded-md bg-clip-padding backdrop-filter backdrop-blur-xl bg-opacity-20 border border-gray-100">
+        <div className=" shadow-xl max-w-md w-full p-6 md:max-w-lg lg:max-w-xl md:mt-[7%] mt-12 relative  bg-slate-400 rounded-md bg-clip-padding backdrop-filter backdrop-blur-xl bg-opacity-20 border border-gray-100">
    
           <button className="absolute top-4 right-4 btn btn-sm btn-outline btn-primary " onClick={()=> dispatch(toggleEditProfileView(true))}>
             Edit Profile
