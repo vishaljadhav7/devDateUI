@@ -17,6 +17,7 @@ const Core = () => {
 
   const getFeed = async () =>{
     // if(core) return
+    console.log("token ", localStorage.getItem('token'))
     try {
       setLoading(true);
       const res = await axios.get(BASE_URL + "/user/core", {
@@ -26,7 +27,9 @@ const Core = () => {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`
         },
+        withCredentials : true
       })
+
      
       dispatch(addFeed(res?.data?.data))
     } catch (error) {
