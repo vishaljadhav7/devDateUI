@@ -12,6 +12,9 @@ import { Provider } from "react-redux";
 import appStore from "./utils/appStore";
 import Chat from "./pages/Chat";
 import { WebSocketProvider } from "./context/WebSocketContext";
+import ProtectedRoute from './components/ProtectedRoute'
+
+{/* <ProtectedRoute><Chat/></ProtectedRoute> */}
 
 function App() {
 
@@ -22,8 +25,7 @@ function App() {
       children : [
         {
           path : "/",
-          element : <Core/>,
-          children : [] 
+          element :<ProtectedRoute><Core/></ProtectedRoute>, 
         },
         {
           path : "/homePage",
@@ -39,19 +41,19 @@ function App() {
         },
         {
           path : "/profile",
-          element : <Profile/>,
+          element : <ProtectedRoute><Profile/></ProtectedRoute>,
         },
         {
           path : "/connections",
-          element : <Connections/>
+          element : <ProtectedRoute><Connections/></ProtectedRoute> 
         },
         {
           path : "/requests",
-          element : <Requests/>
+          element : <ProtectedRoute><Requests/></ProtectedRoute>
         },
         {
           path : "/chat/:toUserId",
-          element : <Chat/>
+          element : <ProtectedRoute><Chat/></ProtectedRoute>
         }
       ]
     }
