@@ -27,7 +27,6 @@ const Core = () => {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`
         },
-        withCredentials : true
       })
 
      

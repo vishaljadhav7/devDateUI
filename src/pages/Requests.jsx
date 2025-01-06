@@ -32,10 +32,10 @@ const Requests = () => {
     try {
       const res = await axios.post(
         `${BASE_URL}/request/review/${status}/${requestId}`,
-        {},
+        {}, 
         {
           headers: {
-            Authorization: `Bearer ${localStorage.getItem('token')}`
+            Authorization: `Bearer ${localStorage.getItem('token')}`,
           },
         }
       );
@@ -48,7 +48,7 @@ const Requests = () => {
   };
 
   useEffect(() => {
-    if(requests?.length) return
+    // if(requests?.length) return
     getRequests();
   }, []);
 

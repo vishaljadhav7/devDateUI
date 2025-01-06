@@ -23,6 +23,7 @@ const Navbar = () => {
           Authorization: `Bearer ${localStorage.getItem('token')}`
         },
       });
+      localStorage.removeItem('token')
       dispatch(removeUser());
       dispatch(clearConnections())
       dispatch(clearRequests())
