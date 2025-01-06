@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from "react-redux"
 import { BASE_URL } from "../utils/constants"
 import { addFeed } from "../utils/coreSlice"
 import UserCard from "./UserCard"
-import ShimmerCard from '../components/ShimmerCard';
+import ShimmerLoader from "./Shimmer"
 
 
 const Core = () => {
@@ -17,7 +17,6 @@ const Core = () => {
 
   const getFeed = async () =>{
     // if(core) return
-    console.log("token ", localStorage.getItem('token'))
     try {
       setLoading(true);
       const res = await axios.get(BASE_URL + "/user/core", {
@@ -65,8 +64,9 @@ const Core = () => {
     )
   }
 
-
-  
+  if(loading){
+    return <ShimmerLoader/>
+}
 
 
   return (
@@ -74,11 +74,6 @@ const Core = () => {
        {core?.length >= 0 && (
         <UserCard user={core && core[0] || []} /> 
        )}
-
-        {loading ? (
-          <ShimmerCard/>
-        ) : null}
-
     </div>
   )
 }
