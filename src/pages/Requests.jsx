@@ -16,7 +16,9 @@ const Requests = () => {
     try {
       setLoading(true)
       const res = await axios.get(BASE_URL + "/user/request/received", {
-        withCredentials: true,
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}`
+        },
       });
       dispatch(addRequest(res.data.data));
       setErrorMessage(""); // Clear any previous error
