@@ -61,10 +61,9 @@ const SignUp = () => {
     <div className="hero bg-white absolute top-0 min-h-screen  pt-[22%] md:pt-[7%] bg-gradient-to-r from-purple-200 via-violet-400 to-indigo-600 overflow-y-scroll overflow-x-hidden">
       <div className="hero-content flex-col lg:flex-row-reverse">
         <div className="text-center lg:text-left">
-          <h1 className="text-2xl  md:text-3xl font-bold text-black">Start Your DevDates Journey Today!</h1>
+          <h1 className="text-5xl font-bold text-black">Start Your DevDates Journey Today!</h1>
           <p className="py-6 hidden md:block text-black">
           Ready to connect with fellow IT pros? Sign up now and find your perfect match!
-          Let me know if this works or if you would like it rephrased further!
           </p>
         </div>
 
