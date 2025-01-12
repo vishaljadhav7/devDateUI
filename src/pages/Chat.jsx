@@ -32,7 +32,9 @@ const Chat = () => {
                    },
                 }
             );
-            setMessages( (prev) => [...prev, { message, senderId: user._id, createdAt: new Date().toISOString() }]); 
+            const newMessage = { message, senderId: user._id, createdAt: new Date().toISOString() }
+            // setMessages( (prev) => [...prev, { message, senderId: user._id, createdAt: new Date().toISOString() } ]); 
+            setMessages((prev) => (Array.isArray(prev) ? [...prev, newMessage] : [newMessage]));
             setMessage('');
         } catch (error) {
             setErrorMsg(error);
