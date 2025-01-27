@@ -58,116 +58,118 @@ const SignUp = () => {
    })
 
   return (
-    <div className="hero bg-white absolute top-0 min-h-screen  pt-[22%] md:pt-[7%] bg-gradient-to-r from-purple-200 via-violet-400 to-indigo-600 overflow-y-scroll overflow-x-hidden">
-      <div className="hero-content flex-col lg:flex-row-reverse">
-        <div className="text-center lg:text-left">
-          <h1 className="text-5xl font-bold text-black">Start Your DevDates Journey Today!</h1>
-          <p className="py-6 hidden md:block text-black">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-purple-50 via-indigo-50 to-blue-50 pt-[8%]">
+    <div className="w-full max-w-4xl mx-4 bg-white rounded-lg shadow-xl overflow-hidden md:flex md:flex-row-reverse">
+      {/* Welcome Section */}
+      <div className="p-8 md:p-12 md:w-1/2 bg-gradient-to-r from-purple-100 to-indigo-100">
+        <h1 className="text-4xl font-bold text-gray-900 mb-4">Start Your DevDates Journey Today!</h1>
+        <p className="text-gray-600 hidden md:block">
           Ready to connect with fellow IT pros? Sign up now and find your perfect match!
-          </p>
-        </div>
+        </p>
+      </div>
 
-        <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl md:mr-10">
-          <form className="card-body" onSubmit={handleSubmit}>
-    
-            <div className="form-control">
-              <label className="label">
-                <span className="label-text">First Name</span>
-              </label>
+      {/* Signup Form Section */}
+      <div className="p-8 md:p-12 md:w-1/2">
+        <div className="h-[500px] overflow-y-auto"> {/* Fixed height with scrollable content */}
+          <form className="space-y-6" onSubmit={handleSubmit}>
+            {/* First Name Input */}
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">First Name</label>
               <input
                 type="text"
-                placeholder="First Name"
-                name="firstName" // Updated to match schema
+                name="firstName"
+                placeholder="Enter your first name"
                 value={values.firstName}
                 onChange={handleChange}
                 onBlur={handleBlur}
-                className="input input-bordered"
+                className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
               />
               {errors.firstName && touched.firstName && (
-                <p className="text-red-500 px-2 py-1">{errors.firstName}</p>
+                <p className="text-red-500 text-sm mt-1">{errors.firstName}</p>
               )}
             </div>
 
-   
-            <div className="form-control">
-              <label className="label">
-                <span className="label-text">Last Name</span>
-              </label>
+            {/* Last Name Input */}
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">Last Name</label>
               <input
                 type="text"
-                placeholder="Last Name"
-                name="lastName" // Updated to match schema
+                name="lastName"
+                placeholder="Enter your last name"
                 value={values.lastName}
                 onChange={handleChange}
                 onBlur={handleBlur}
-                className="input input-bordered"
+                className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
               />
               {errors.lastName && touched.lastName && (
-                <p className="text-red-500 px-2 py-1">{errors.lastName}</p>
+                <p className="text-red-500 text-sm mt-1">{errors.lastName}</p>
               )}
             </div>
 
-       
-            <div className="form-control">
-              <label className="label">
-                <span className="label-text">Email</span>
-              </label>
+            {/* Email Input */}
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">Email</label>
               <input
                 type="email"
-                placeholder="Email"
                 name="emailId"
+                placeholder="Enter your email"
                 value={values.emailId}
                 onChange={handleChange}
                 onBlur={handleBlur}
-                className="input input-bordered"
+                className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
               />
               {errors.emailId && touched.emailId && (
-                <p className="text-red-500 px-2 py-1">{errors.emailId}</p>
+                <p className="text-red-500 text-sm mt-1">{errors.emailId}</p>
               )}
             </div>
 
-     
-            <div className="form-control">
-              <label className="label">
-                <span className="label-text">Password</span>
-              </label>
+            {/* Password Input */}
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">Password</label>
               <input
                 type="password"
-                placeholder="Password"
                 name="password"
+                placeholder="Enter your password"
                 value={values.password}
                 onChange={handleChange}
                 onBlur={handleBlur}
-                className="input input-bordered"
+                className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
               />
               {errors.password && touched.password && (
-                <p className="text-red-500 px-2 py-1">{errors.password}</p>
+                <p className="text-red-500 text-sm mt-1">{errors.password}</p>
               )}
             </div>
 
-      
-            <div className="flex items-center justify-between mt-2 gap-2">
-              <button 
-              className="btn btn-primary md:w-[100px]" 
-              type="submit"
-              disabled={!isSubmit}
+            {/* Sign Up Button */}
+            <div>
+              <button
+                type="submit"
+                disabled={!isSubmit}
+                className="w-full px-4 py-2 bg-indigo-600 text-white font-semibold rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 Sign Up
               </button>
-              <div className="mt-2">
-                <p>
-                  Already a user?{" "}
-                  <Link to="/signin">
-                    <span className="text-teal-500 font-bold">Sign In!</span>
-                  </Link>
-                </p>
-              </div>
             </div>
-            {errorMessage && <p className="text-red-500 px-2 py-1">{errorMessage}</p>}
+
+            {/* Sign In Link */}
+            <div className="text-center">
+              <p className="text-gray-600">
+                Already a user?{' '}
+                <Link to="/signin" className="text-indigo-600 font-semibold hover:underline">
+                  Sign In!
+                </Link>
+              </p>
+            </div>
+
+            {/* Error Message */}
+            {errorMessage && (
+              <p className="text-red-500 text-sm text-center mt-4">{errorMessage}</p>
+            )}
           </form>
         </div>
       </div>
     </div>
+  </div>
   );
 };
 

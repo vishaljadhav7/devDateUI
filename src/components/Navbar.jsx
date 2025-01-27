@@ -34,73 +34,84 @@ const Navbar = () => {
     }
   }
   return (
-    <div className="navbar flex justify-between items-center px-4 py-2 bg-white/30 backdrop-blur-lg shadow-lg relative z-40 w-screen">
-      {/* Text Logo */}
-      <div className="text-3xl font-bold text-[#374151]">
-       <Link to="/">Dev<span className="text-[#10B981]">Dates</span></Link>
-     </div>
-
-
-      {/* User Section */}
-      {user ? (
-        <div className="flex gap-4 items-center">
-          <h1 className="font-medium text-lg text-gray-700 hidden md:block">
-            Welcome, <span className="font-bold text-[#4F46E5]">{user.firstName}</span>
-          </h1>
-
-          {/* User Dropdown */}
-          <div className="dropdown dropdown-end relative">
-            <div
-              tabIndex={0}
-              role="button"
-              className="btn btn-ghost btn-circle avatar hover:shadow-md"
-            >
-              <div className="w-10 h-10 rounded-full border-2 border-[#4F46E5] overflow-hidden">
-                <img
-                  alt="user avatar"
-                  src={user.photoURL || "/default_avatar.png"}
-                  className="object-cover"
-                />
-              </div>
-            </div>
-            <ul
-              tabIndex={0}
-              className="menu dropdown-content mt-3 w-52 bg-white rounded-lg shadow-lg z-50 p-2"
-            >
-              <li>
-                <Link to="/" className="hover:text-[#4F46E5]">Feed</Link>
-              </li>
-              <li>
-                <Link to="/profile" className="flex justify-between hover:text-[#4F46E5]">
-                  Profile
-                  <span className="badge bg-[#14B8A6] text-white">New</span>
-                </Link>
-              </li>
-              <li>
-                <Link to="/connections" className="hover:text-[#4F46E5]">Connections</Link>
-              </li>
-              <li>
-                <Link to="/requests" className="hover:text-[#4F46E5]">Requests</Link>
-              </li>
-              <li>
-                <a onClick={handleLogout} className="text-red-600 hover:text-red-800 cursor-pointer">
-                  Logout
-                </a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      ) : (
-        // Guest View
-        <div className="p-2">
-          <Link to="/homePage">
-            <button className="btn bg-[#4F46E5] text-white px-4 py-2 rounded-lg hover:bg-[#3B32C4] transition-all">
-              Home
-            </button>
-          </Link>
-        </div>
-      )}
+    <div className="flex justify-between items-center px-6 h-16 w-full bg-white shadow-sm fixed z-50">
+    {/* Text Logo */}
+    <div className="text-3xl font-bold text-gray-900">
+      <Link to="/" className="hover:text-gray-700 transition-colors">
+        Dev<span className="text-orange-400">Dates</span>
+      </Link>
     </div>
+
+    {/* User Section */}
+    {user ? (
+      <div className="flex gap-6 items-center ">
+        {/* Welcome Message */}
+        <h1 className="font-medium text-lg text-gray-700 hidden md:block">
+          Welcome, <span className="font-bold text-indigo-600">{user.firstName}</span>
+        </h1>
+
+        {/* User Dropdown */}
+        <div className="dropdown dropdown-end">
+          <div
+            tabIndex={0}
+            role="button"
+            className="btn btn-ghost btn-circle avatar hover:bg-gray-100 transition-colors"
+          >
+            <div className="w-10 h-10 rounded-full border-2 border-indigo-500 overflow-hidden">
+              <img
+                alt="user avatar"
+                src={user.photoURL || "/default_avatar.png"}
+                className="object-cover w-full h-full"
+              />
+            </div>
+          </div>
+          <ul
+            tabIndex={0}
+            className="menu dropdown-content mt-3 w-52 bg-white rounded-box shadow-lg z-50 p-2"
+          >
+            <li>
+              <Link to="/" className="hover:bg-gray-100 text-gray-700">
+                Feed
+              </Link>
+            </li>
+            <li>
+              <Link to="/profile" className="hover:bg-gray-100 text-gray-700 flex justify-between">
+                Profile
+                <span className="badge badge-success text-white">New</span>
+              </Link>
+            </li>
+            <li>
+              <Link to="/connections" className="hover:bg-gray-100 text-gray-700">
+                Connections
+              </Link>
+            </li>
+            <li>
+              <Link to="/requests" className="hover:bg-gray-100 text-gray-700">
+                Requests
+              </Link>
+            </li>
+            <li>
+              <a
+                onClick={handleLogout}
+                className="text-red-500 hover:bg-red-50 hover:text-red-700 cursor-pointer"
+              >
+                Logout
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    ) : (
+      // Guest View
+      <div className="flex gap-4">
+        <Link to="/homePage">
+          <button className="bg-indigo-600 text-white px-6 py-2 rounded-lg hover:bg-indigo-700 transition-colors shadow-md">
+            Home
+          </button>
+        </Link>
+      </div>
+    )}
+  </div>
   );
 }
 

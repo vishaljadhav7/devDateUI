@@ -63,66 +63,73 @@ const SignIn = () => {
  })
 
   return (
-    <div className="hero bg-white absolute top-0 min-h-screen pt-[10%] md:pt-[5%] bg-gradient-to-r from-purple-200 via-violet-400 to-indigo-600">
-    <div className="hero-content flex-col lg:flex-row-reverse ">
-     <div className="text-center lg:text-left">
-       <h1 className="text-5xl font-bold text-black">Welcome Back, Dev!</h1>
-       <p className="py-6 hidden md:block text-black">
-       Great to see you again! Log in and continue connecting with fellow techies. Your next match might be just a click away.
-       </p>
-     </div>
- 
-     <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl md:mr-16">
-       <form className="card-body">
+    <div className="min-h-screen flex items-center justify-center bg-gray-50">
+      <div className="w-full max-w-md p-8 bg-white rounded-lg shadow-md">
+        {/* Welcome Section */}
+        <div className="text-center">
+          <h1 className="text-3xl font-bold text-gray-900 mb-2">Welcome Back, Dev!</h1>
+          <p className="text-gray-600 mb-6">
+            Great to see you again! Log in and continue connecting with fellow techies.
+          </p>
+        </div>
 
-         <div className="form-control">
-           <label className="label">
-             <span className="label-text">Email</span>
-           </label>
-           <input 
-           type="email" 
-           placeholder="email"
-           name="emailId" 
-           className="input input-bordered" 
-           required 
-           onChange={handleChange}
-           />
-         </div>
- 
-         <div className="form-control">
-           <label className="label">
-             <span className="label-text">Password</span>
-           </label>
-           <input 
-           type="password" 
-           placeholder="password" 
-           className="input input-bordered"
-           name="password" 
-           required 
-           onChange={handleChange}
-           />
-         </div>
- 
-         <div className="flex items-center justify-between mt-2 gap-2">
-           <button 
-           className="btn btn-primary w-[100px]"
-           onClick={handleSignIn}
-           type="submit"
-           disabled={!isSubmit}
-           >
-            Login
-          </button>
-         <div className="mt-2">
-         <p>New here? <Link to={"/signup"}><span className="text-teal-500 font-bold">Sign Up!</span> </Link></p>
-         </div>
-         
-       </div>
-       {errorMessage && <p className="text-red-500 px-2 py-1">{errorMessage.message}</p>}
-       </form>
-     </div>
-   </div>
- </div>
- 
+        {/* Login Form */}
+        <form className="space-y-6">
+          {/* Email Input */}
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">Email</label>
+            <input
+              type="email"
+              name="emailId"
+              placeholder="Enter your email"
+              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+              required
+              onChange={handleChange}
+            />
+          </div>
+
+          {/* Password Input */}
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">Password</label>
+            <input
+              type="password"
+              name="password"
+              placeholder="Enter your password"
+              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+              required
+              onChange={handleChange}
+            />
+          </div>
+
+          {/* Login Button */}
+          <div>
+            <button
+              type="submit"
+              onClick={handleSignIn}
+              disabled={!isSubmit}
+              className="w-full px-4 py-2 bg-indigo-600 text-white font-semibold rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              Login
+            </button>
+          </div>
+
+          {/* Sign Up Link */}
+          <div className="text-center">
+            <p className="text-gray-600">
+              New here?{' '}
+              <Link to="/signup" className="text-indigo-600 font-semibold hover:underline">
+                Sign Up!
+              </Link>
+            </p>
+          </div>
+
+          {/* Error Message */}
+          {errorMessage && (
+            <p className="text-red-500 text-sm text-center mt-4">{errorMessage.message}</p>
+          )}
+        </form>
+      </div>
+    </div>
   )
 }
 

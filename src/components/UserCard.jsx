@@ -27,40 +27,43 @@ const UserCard = ({user}) => {
   const aboutInfo = about?.length > 100 ? about?.slice(0,100) : about;
   
   return (
-    <div className=" max-w-sm md:w-[330px] mx-auto bg-white rounded-lg shadow-md overflow-hidden transform transition duration-300 hover:scale-105">
+    <div className="max-w-sm md:w-[330px] mx-auto bg-white rounded-lg shadow-lg overflow-hidden transform transition duration-300 hover:scale-105 hover:shadow-2xl">
     <img
-      className="w-full h-48 object-cover"
+      className="w-full h-48 object-cover transform transition duration-300 hover:scale-110"
       src={photoURL}
       alt={`${firstName} ${lastName}`}
     />
-    <div className="p-5">
-      <h2 className="text-2xl font-semibold text-gray-800">
+    <div className="p-6">
+      <h2 className="text-2xl font-bold text-gray-800 mb-2">
         {firstName} {lastName}, {age}
       </h2>
-      <p className="text-gray-600 mt-2">{aboutInfo} ...</p>
-      <div className="mt-3">
-        <h3 className="text-gray-800 font-semibold">Skills:</h3>
-        <ul className="flex flex-wrap gap-2 mt-1">
-          {skills && skills?.map((skill, index) => (
-            <span
-              key={index}
-              className="bg-blue-100 text-blue-800 text-sm px-2 py-1 rounded-full"
-            >
-              {skill}
-            </span>
-          ))}
+      <p className="text-gray-600 text-sm leading-relaxed mb-4">
+        {aboutInfo} ...
+      </p>
+      <div className="mb-6">
+        <h3 className="text-gray-800 font-semibold mb-2">Skills:</h3>
+        <ul className="flex flex-wrap gap-2">
+          {skills &&
+            skills.map((skill, index) => (
+              <span
+                key={index}
+                className="bg-blue-100 text-blue-800 text-xs font-medium px-3 py-1 rounded-full"
+              >
+                {skill}
+              </span>
+            ))}
         </ul>
       </div>
-      <div className="flex justify-around mt-5">
+      <div className="flex justify-around">
         <button
-        onClick={() => handleSendRequest("ignored", _id)}
-          className="btn btn-outline btn-error w-24"
+          onClick={() => handleSendRequest("ignored", _id)}
+          className="btn btn-outline btn-error w-24 hover:bg-red-50 hover:border-red-600 hover:text-red-600 transition duration-300"
         >
           Ignore
         </button>
         <button
-            onClick={() => handleSendRequest("interested", _id)}
-          className="btn btn-primary w-24"
+          onClick={() => handleSendRequest("interested", _id)}
+          className="btn btn-primary w-24 bg-blue-600 hover:bg-blue-700 text-white transition duration-300"
         >
           Interested
         </button>

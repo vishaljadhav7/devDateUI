@@ -49,7 +49,7 @@ const Core = () => {
  
   if (core?.length <= 0){
     return (
-      <div className=" absolute top-0 bg-white  w-screen min-h-screen flex justify-center items-center">
+      <div className="bg-white  w-screen min-h-screen flex justify-center items-center">
          <div className="p-4 flex flex-col gap-5">
          <h1 className="text-3xl  font-bold text-black">No users left!</h1>
            <button 
@@ -70,7 +70,7 @@ const Core = () => {
 
 
   return (
-    <div className=" absolute top-0 bg-white w-screen min-h-screen flex justify-center items-center pt-[5%]">
+    <div className="bg-white w-screen min-h-screen flex justify-center items-center p-2">
        {core?.length >= 0 && (
         <UserCard user={core && core[0] || []} /> 
        )}

@@ -37,7 +37,7 @@ const Connections = () => {
 
   if (error) {
     return (
-      <h1 className="absolute top-0 bg-white w-screen h-screen flex justify-center items-center text-3xl text-red-700">
+      <h1 className=" bg-white w-screen h-screen flex justify-center items-center text-3xl text-red-700">
         {error}
       </h1>
     );
@@ -45,7 +45,7 @@ const Connections = () => {
 
   if (connections?.length === 0)
     return (
-      <h1 className="absolute top-0 bg-white w-screen h-screen flex justify-center items-center text-3xl text-black">
+      <h1 className=" bg-white w-screen h-screen flex justify-center items-center text-3xl text-black">
         No Invites Found
       </h1>
     );
@@ -55,44 +55,40 @@ const Connections = () => {
     }
 
   return (
-    <div className="absolute top-0 bg-white w-screen h-screen flex flex-col items-center pt-[25%] md:pt-[8%]">
-      <h1 className="text-2xl font-bold text-gray-800 mb-6">Connections</h1>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full px-4 md:px-10 overflow-y-scroll">
-        {connections?.map((connection) => {
-          if (!connection) return null;
-          const { _id, firstName, lastName, photoURL} = connection;
+    <div className=" bg-white w-screen h-screen flex flex-col items-center pt-[25%] md:pt-[8%]">
+  <h1 className="text-3xl font-bold text-gray-800 mb-8">Connections</h1>
+  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full px-4 md:px-10 overflow-y-auto">
+    {connections?.map((connection) => {
+      if (!connection) return null;
+      const { _id, firstName, lastName, photoURL } = connection;
 
-
-          return (
-            <div
-              key={_id}
-              className="card bg-white shadow-xl p-4 rounded-lg hover:shadow-2xl transition-shadow duration-300"
-            >
-              <div className="flex items-center mb-4">
-                <img
-                  src={photoURL}
-                  alt={`${firstName} ${lastName}`}
-                  className="w-16 h-16 rounded-full border border-gray-300 object-cover"
-                />
-                <div className="ml-4">
-                  <h2 className="text-lg font-semibold text-gray-800">
-                    {firstName} {lastName}
-                  </h2>
-                </div>
-              </div>
-    
-           <Link to={`/chat/${_id}`}>           
-              <button
-                className="mt-4 bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition-colors w-[100px]"
-              >
-                Chat
-              </button>
-           </Link>
+      return (
+        <div
+          key={_id}
+          className="bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
+        >
+          <div className="flex items-center space-x-4">
+            <img
+              src={photoURL}
+              alt={`${firstName} ${lastName}`}
+              className="w-16 h-16 rounded-full object-cover border-2 border-gray-100"
+            />
+            <div>
+              <h2 className="text-xl font-semibold text-gray-800">
+                {firstName} {lastName}
+              </h2>
             </div>
-          );
-        })}
-      </div>
-    </div>
+          </div>
+          <Link to={`/chat/${_id}`}>
+            <button className="mt-6 w-full bg-gradient-to-r from-blue-500 to-blue-600 text-white px-6 py-2 rounded-lg hover:from-blue-600 hover:to-blue-700 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+              Chat
+            </button>
+          </Link>
+        </div>
+      );
+    })}
+  </div>
+</div>
   );
 };
 

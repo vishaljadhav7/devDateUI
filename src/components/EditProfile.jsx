@@ -64,47 +64,44 @@ const EditProfile = () => {
   };
 
 
-  return (
-    <div className="modal modal-open ">
-      <div className="modal-box w-full max-w-lg">
-        <h2 className="text-2xl font-bold mb-4 text-center">Edit Profile</h2>
-        <form onSubmit={handleSubmit} className="space-y-4">
-          {/* First Name */}
+  return  (
+    <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 backdrop-blur-sm z-50 ">
+      <div className="bg-white w-full max-w-lg rounded-2xl shadow-2xl overflow-hidden transform transition-all duration-300 ease-in-out">
+      
+        <div className="bg-orange-400 p-6">
+          <h2 className="text-2xl font-bold text-white text-center">Edit Profile</h2>
+        </div>
+
+        <form onSubmit={handleSubmit} 
+        className="p-6 space-y-6 bg-white h-[400px] overflow-scroll">
+    
           <div>
-            <label className="label">
-              <span className="label-text">First Name</span>
-            </label>
+            <label className="block text-sm font-medium text-gray-700 mb-1">First Name</label>
             <input
               type="text"
               name="firstName"
               value={formData?.firstName}
-
               onChange={handleChange}
               placeholder="Enter your first name"
-              className="input input-bordered w-full"
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500"
             />
           </div>
 
-          {/* Last Name */}
+      
           <div>
-            <label className="label">
-              <span className="label-text">Last Name</span>
-            </label>
+            <label className="block text-sm font-medium text-gray-700 mb-1">Last Name</label>
             <input
               type="text"
               name="lastName"
               value={formData?.lastName}
               onChange={handleChange}
               placeholder="Enter your last name"
-              className="input input-bordered w-full"
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500"
             />
           </div>
 
-          {/* Age */}
           <div>
-            <label className="label">
-              <span className="label-text">Age</span>
-            </label>
+            <label className="block text-sm font-medium text-gray-700 mb-1">Age</label>
             <input
               type="number"
               name="age"
@@ -112,72 +109,70 @@ const EditProfile = () => {
               value={formData?.age}
               onChange={handleChange}
               placeholder="Enter your age"
-              className="input input-bordered w-full"
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500"
             />
           </div>
 
-          {/* Photo URL */}
+       
           <div>
-            <label className="label">
-              <span className="label-text">Photo URL</span>
-            </label>
+            <label className="block text-sm font-medium text-gray-700 mb-1">Photo URL</label>
             <input
               type="url"
               name="photoURL"
               value={formData?.photoURL}
               onChange={handleChange}
               placeholder="Enter photo URL"
-              className="input input-bordered w-full"
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500"
             />
           </div>
 
-          {/* Gender */}
+      
           <div>
-            <label className="label">
-              <span className="label-text">Gender</span>
-            </label>
+            <label className="block text-sm font-medium text-gray-700 mb-1">Gender</label>
             <select
               name="gender"
               value={formData?.gender}
               onChange={handleChange}
-              className="select select-bordered w-full"
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500"
             >
-              <option value={user?.age} disabled>
+              <option value="" disabled>
                 Select gender
               </option>
-              <option value="male">male</option>
-              <option value="female">female</option>
-              <option value="others">others</option>
+              <option value="male">Male</option>
+              <option value="female">Female</option>
+              <option value="others">Others</option>
             </select>
           </div>
 
-          {/* About */}
+       \
           <div>
-            <label className="label">
-              <span className="label-text">About</span>
-            </label>
+            <label className="block text-sm font-medium text-gray-700 mb-1">About</label>
             <textarea
               name="about"
               value={formData?.about}
               onChange={handleChange}
               placeholder="Write something about yourself"
-              className="textarea textarea-bordered w-full"
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500"
+              rows={4}
             />
           </div>
 
-          {/* Submit Button */}
-          <div className="modal-action">
-            <button type="submit" className="btn btn-primary w-full">
+          <div>
+            <button
+              type="submit"
+              className="w-full px-4 py-2 bg-purple-600 text-white font-semibold rounded-lg hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2"
+            >
               Save Changes
             </button>
           </div>
         </form>
       </div>
-      <button 
-      className="w-[70px] absolute right-[5%] top-[5%] z-40 text-4xl text-white font-bold" 
-      onClick={()=> dispatch(toggleEditProfileView(false))}
+
+      <button
+        className="absolute top-6 right-6 w-12 h-12 flex items-center justify-center bg-white rounded-full shadow-lg text-2xl text-purple-600 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2"
+        onClick={() => dispatch(toggleEditProfileView(false))}
       >
-        X
+        &times;
       </button>
     </div>
   );
