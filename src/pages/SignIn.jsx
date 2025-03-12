@@ -18,6 +18,7 @@ const SignIn = () => {
   const dispatch = useDispatch()
   const user = useSelector(store => store.user)
   const [userData, setUserData] = useState(initialValues)
+  const [loading, setLoading] = useState(false)
   const [isSubmit, toggleSubmit] = useState(false)
   const [errorMessage, setErrorMessage] = useState('')
 
@@ -33,6 +34,7 @@ const SignIn = () => {
     e.preventDefault();
     const {emailId, password} = userData
     try {
+      setLoading(true)
       const res = await axios.post(
         BASE_URL + "/auth/signin",
         {
@@ -46,11 +48,11 @@ const SignIn = () => {
       return navigate("/"); // takes us to the feed or core
     } catch (err) {
       setErrorMessage(err?.response?.data || "Something went wrong");
+    } finally {
+      setLoading(false)
     }
   }
-
-
-
+  
   useEffect(()=>{
      const canSubmit = Object.values(userData).every(value => Boolean(value))
      toggleSubmit(canSubmit)
@@ -60,12 +62,12 @@ const SignIn = () => {
   if(user) {
     navigate("/")
    } 
- })
+ },[user, dispatch, navigate]);
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50">
       <div className="w-full max-w-md p-8 bg-white rounded-lg shadow-md">
-        {/* Welcome Section */}
+ 
         <div className="text-center">
           <h1 className="text-3xl font-bold text-gray-900 mb-2">Welcome Back, Dev!</h1>
           <p className="text-gray-600 mb-6">
@@ -73,9 +75,8 @@ const SignIn = () => {
           </p>
         </div>
 
-        {/* Login Form */}
+      
         <form className="space-y-6">
-          {/* Email Input */}
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">Email</label>
             <input
@@ -88,7 +89,6 @@ const SignIn = () => {
             />
           </div>
 
-          {/* Password Input */}
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">Password</label>
             <input
@@ -101,19 +101,17 @@ const SignIn = () => {
             />
           </div>
 
-          {/* Login Button */}
           <div>
             <button
               type="submit"
               onClick={handleSignIn}
-              disabled={!isSubmit}
+              disabled={!isSubmit || loading}
               className="w-full px-4 py-2 bg-indigo-600 text-white font-semibold rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              Login
+              {loading ? "loading..." : "Sign In"}
             </button>
           </div>
 
-          {/* Sign Up Link */}
           <div className="text-center">
             <p className="text-gray-600">
               New here?{' '}
