@@ -11,7 +11,7 @@ const Core = () => {
   const dispatch = useDispatch()
   const core = useSelector((store) => store.core)
   const [loading, setLoading] = useState(false);
-  const [page, setPage] = useState(1);
+  const [page, setPage] = useState(0);
 
   const [errorMessage, setErrorMessage]  = useState('')
 
@@ -21,7 +21,7 @@ const Core = () => {
       setLoading(true);
       const res = await axios.get(BASE_URL + "/user/core", {
         params: {
-          page: 1
+          page 
         },
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`
@@ -57,7 +57,7 @@ const Core = () => {
            onClick={()=> setPage(prev => prev + 1)}
            disabled={loading} 
            >
-            Load More!
+           {loading ? "loading..." : "load more"}
           </button>
          </div>
       </div>
@@ -74,6 +74,7 @@ const Core = () => {
        {core?.length >= 0 && (
         <UserCard user={core && core[0] || []} /> 
        )}
+       
     </div>
   )
 }

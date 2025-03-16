@@ -8,8 +8,6 @@ const Profile = () => {
   const profile = useSelector((store) => store.profile)
   const user = useSelector((store) => store.user);
 
-     
-
   return (
     <div className="bg-gradient-to-br from-gray-50 to-gray-100 w-screen min-h-screen flex justify-center items-center p-6">
     {user && (

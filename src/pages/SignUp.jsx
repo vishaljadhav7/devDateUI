@@ -55,6 +55,16 @@ const SignUp = () => {
 
   }, [values])
 
+  const validForm = () => {
+    return (
+      Boolean(values.firstName &&
+        values.emailId &&
+        values.password &&
+        values.lastName
+      )
+    )
+  }
+
   useEffect(()=>{
     if(user) {
       navigate("/profile")

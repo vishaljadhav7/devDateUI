@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom';
 import { BASE_URL } from '../utils/constants';
 import { useWebSocketContext } from '../context/WebSocketContext';
 import { useSelector } from 'react-redux';
+import ShimmerLoader from '../shimmer/ShimmerLoader';
 
 const Chat = () => {
     const { toUserId } = useParams();
@@ -12,64 +13,68 @@ const Chat = () => {
     const [message, setMessage] = useState('');
     const { socket } = useWebSocketContext();
     const [participants, setParticipants] = useState();
+    const [loading, setLoading] = useState(false)
     const [errorMsg, setErrorMsg] = useState('');
  
     const [reciever, setReciever] = useState('');
     // Send Message
     const sendMessage = async () => {
-        if (!message) return;
-        try {
-            await axios.post(
-                `${BASE_URL}/chat/send-message/${toUserId}`,
-                {
-                    senderId: user._id,
-                    receiverId: toUserId,
-                    message,
-                },
-                { 
-                 headers: {
-                     Authorization: `Bearer ${localStorage.getItem('token')}`
-                   },
-                }
-            );
-            const newMessage = { message, senderId: user._id, createdAt: new Date().toISOString() }
-            setMessages((prev) => (Array.isArray(prev) ? [...prev, newMessage] : [newMessage]));
-            setMessage('');
-        } catch (error) {
-            setErrorMsg(error);
-        }
+      if (!message) return;
+      try {
+        await axios.post(
+          `${BASE_URL}/chat/send-message/${toUserId}`,
+          {
+            senderId: user._id,
+            receiverId: toUserId,
+            message,
+          },
+          { 
+           headers: {
+               Authorization: `Bearer ${localStorage.getItem('token')}`
+             },
+          }
+        );
+        const newMessage = { message, senderId: user._id, createdAt: new Date().toISOString() }
+        setMessages((prev) => (Array.isArray(prev) ? [...prev, newMessage] : [newMessage]));
+        setMessage('');
+      } catch (error) {
+        setErrorMsg(error);
+      }
     };
 
     // Fetch Messages
     const getMessages = async () => {
-        try {
-            const res = await axios.get(`${BASE_URL}/chat/get-message/${toUserId}`, {
-                headers: {
-                    Authorization: `Bearer ${localStorage.getItem('token')}`
-                  },
-            });
-            setParticipants(res?.data.data.participants);
-            setMessages(res?.data.data.messages);
-        } catch (error) {
-            setErrorMsg(error);
-        }
+       setLoading(true)
+      try {
+        const res = await axios.get(`${BASE_URL}/chat/get-message/${toUserId}`, {
+          headers: {
+              Authorization: `Bearer ${localStorage.getItem('token')}`
+          },
+        });
+        setParticipants(res?.data.data.participants);
+        setMessages(res?.data.data.messages);
+      } catch (error) {
+          setErrorMsg(error);
+      }finally{
+       setLoading(false)
+      }
     };
 
     useEffect(() => {
-        if (!user?._id || !toUserId || !socket) return;
+      if (!user?._id || !toUserId || !socket) return;
 
-        socket.emit('join', { userId: user._id });
-        getMessages(); 
+      socket.emit('join', { userId: user._id });
 
-        const handleNewMessage = (data) => {
-            setMessages(prev => [...prev, data]);
-        };
+      getMessages(); 
 
-        socket.on('new-message', handleNewMessage);
+      const handleNewMessage = (data) => {
+          setMessages(prev => [...prev, data]);
+      };
 
-        return () => {
-            socket.off('new-message', handleNewMessage);
-        };
+      socket.on('new-message', handleNewMessage);
+      return () => {
+          socket.off('new-message', handleNewMessage);
+      };
     }, [user?._id, toUserId, socket]);
 
     useEffect(()=>{
@@ -82,6 +87,11 @@ const Chat = () => {
         setReciever(receiverInfo)
 
     }, [participants])
+
+    if(loading){
+      return <ShimmerLoader type='chat'/>
+    }
+
 
     return (
 <div className=" bg-gray-100 w-screen h-screen flex flex-col justify-center items-center gap-4 p-4">

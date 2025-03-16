@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import { BASE_URL } from "../utils/constants";
 import { addRequest, removeRequest } from "../utils/requestSlice";
-import ShimmerLoader from '../components/Shimmer'
+import ShimmerLoader from '../shimmer/ShimmerLoader';
 
 const Requests = () => {
   const dispatch = useDispatch();
@@ -56,12 +56,13 @@ const Requests = () => {
 
   // if (!requests) return;
 
+  if(loading){
+    return <ShimmerLoader type="request"/>
+  }
+
   if (requests?.length === 0)
     return <h1 className=" bg-white w-screen h-screen flex justify-center items-center text-3xl text-black">No Requests Found</h1>;
 
-  if(loading){
-    return <ShimmerLoader/>
-}
 
 
   return (

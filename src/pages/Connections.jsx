@@ -4,7 +4,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import { BASE_URL } from "../utils/constants";
 import { addConnections } from "../utils/connectionSlice";
-import ShimmerLoader from '../components/Shimmer'
+import ShimmerLoader from '../shimmer/ShimmerLoader'
 
 
 const Connections = () => {
@@ -22,7 +22,7 @@ const Connections = () => {
         },
       });
       dispatch(addConnections(res.data.data));
-      setError(null); // Clear any previous error
+      setError(null); 
     } catch (error) {
       setError("Failed to fetch connections. Please try again later.");
     } finally{
@@ -43,16 +43,17 @@ const Connections = () => {
     );
   }
 
-  if (connections?.length === 0)
-    return (
-      <h1 className=" bg-white w-screen h-screen flex justify-center items-center text-3xl text-black">
-        No Invites Found
-      </h1>
-    );
-
     if(loading){
-        return <ShimmerLoader/>
+        return <ShimmerLoader type="connection"/>
     }
+ 
+    if (connections?.length === 0)
+      return (
+        <h1 className=" bg-white w-screen h-screen flex justify-center items-center text-3xl text-black">
+          No Invites Found
+        </h1>
+      );
+
 
   return (
     <div className=" bg-white w-screen h-screen flex flex-col items-center pt-[25%] md:pt-[8%]">
