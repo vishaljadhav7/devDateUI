@@ -6,7 +6,6 @@ import { useEffect } from "react";
 import { BASE_URL } from '../utils/constants';
 import { addUser } from '../utils/userSlice';
 
-
 const Layout = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -34,10 +33,10 @@ const Layout = () => {
    }, [])
 
   return (
-    <div className=''>
+    <>
         <Navbar/>
         <Outlet/>
-    </div>
+    </>
   )
 }
 

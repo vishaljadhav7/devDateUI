@@ -1,60 +1,58 @@
 const ShimmerChatLoader = () => {
-    return (
-      <div className="h-full w-full max-w-4xl bg-white rounded-lg shadow-2xl flex flex-col overflow-hidden">
-        {/* Header */}
-        <div className="bg-gray-200 py-4 px-6 flex items-center gap-4 relative overflow-hidden">
-          {/* Shimmer overlay */}
-          <div className="absolute inset-0 -translate-x-full animate-[shimmer_1.5s_infinite] bg-gradient-to-r from-transparent via-white/20 to-transparent z-10"></div>
-  
-          <div className="w-10 h-10 rounded-full bg-gray-300"></div>
-          <div className="h-6 w-40 bg-gray-300 rounded-md"></div>
-        </div>
-  
-        {/* Chat Messages */}
-        <div className="flex-1 p-6 overflow-y-auto space-y-4 bg-gray-50 relative">
-          {/* Shimmer overlay */}
-          <div className="absolute inset-0 -translate-x-full animate-[shimmer_1.5s_infinite] bg-gradient-to-r from-transparent via-white/20 to-transparent z-10"></div>
-  
-          {/* Left message */}
-          <div className="flex items-start gap-2 max-w-[80%]">
-            <div className="w-10 h-10 rounded-full bg-gray-200"></div>
-            <div>
-              <div className="h-4 w-24 bg-gray-200 rounded-md mb-1"></div>
-              <div className="h-20 w-64 bg-gray-200 rounded-lg"></div>
-            </div>
-          </div>
-  
-          {/* Right message */}
-          <div className="flex items-start gap-2 max-w-[80%] ml-auto flex-row-reverse">
-            <div className="w-10 h-10 rounded-full bg-gray-200"></div>
-            <div>
-              <div className="h-4 w-24 bg-gray-200 rounded-md mb-1 ml-auto"></div>
-              <div className="h-16 w-56 bg-gray-200 rounded-lg"></div>
-            </div>
-          </div>
-  
-          {/* Left message */}
-          <div className="flex items-start gap-2 max-w-[80%]">
-            <div className="w-10 h-10 rounded-full bg-gray-200"></div>
-            <div>
-              <div className="h-4 w-24 bg-gray-200 rounded-md mb-1"></div>
-              <div className="h-12 w-48 bg-gray-200 rounded-lg"></div>
-            </div>
+  return (
+    <div className="h-full w-full max-w-3xl mx-auto bg-white rounded-lg shadow-md border border-purple-500/20 flex flex-col overflow-hidden">
+      {/* Header */}
+      <div className="bg-gradient-to-r from-purple-500 to-blue-500 py-3 px-4 flex items-center gap-3 relative overflow-hidden">
+        {/* Shimmer overlay */}
+        <div className="absolute inset-0 -translate-x-full animate-[shimmer_1.2s_infinite] bg-gradient-to-r from-gray-200 via-purple-200/50 to-gray-200 z-10"></div>
+
+        <div className="w-8 h-8 rounded-full bg-gradient-to-r from-gray-200 to-purple-200/50"></div>
+        <div className="h-5 w-32 bg-gradient-to-r from-gray-200 to-purple-200/50 rounded-md"></div>
+      </div>
+
+      {/* Chat Messages */}
+      <div className="flex-1 p-4 overflow-y-auto space-y-3 bg-gray-50/50 relative scrollbar-thin scrollbar-thumb-purple-500 scrollbar-track-gray-100">
+        {/* Shimmer overlay */}
+        <div className="absolute inset-0 -translate-x-full animate-[shimmer_1.2s_infinite] bg-gradient-to-r from-gray-200 via-purple-200/50 to-gray-200 z-10"></div>
+
+        {/* Left message */}
+        <div className="flex items-start gap-2 max-w-[70%]">
+          <div className="w-8 h-8 rounded-full bg-gradient-to-r from-gray-200 to-purple-200/50"></div>
+          <div>
+            <div className="h-4 w-20 bg-gradient-to-r from-gray-200 to-purple-200/50 rounded-md mb-1"></div>
+            <div className="h-14 w-48 bg-gradient-to-r from-gray-200 to-purple-200/50 rounded-lg"></div>
           </div>
         </div>
-  
-        {/* Input area */}
-        <div className="bg-gray-200 p-4 flex gap-2 relative overflow-hidden">
-          {/* Shimmer overlay */}
-          <div className="absolute inset-0 -translate-x-full animate-[shimmer_1.5s_infinite] bg-gradient-to-r from-transparent via-white/20 to-transparent z-10"></div>
-  
-          <div className="flex-1 h-10 bg-gray-300 rounded-lg"></div>
-          <div className="h-10 w-16 bg-gray-300 rounded-lg"></div>
+
+        {/* Right message */}
+        <div className="flex items-start gap-2 max-w-[70%] ml-auto flex-row-reverse">
+          <div className="w-8 h-8 rounded-full bg-gradient-to-r from-gray-200 to-purple-200/50"></div>
+          <div>
+            <div className="h-4 w-20 bg-gradient-to-r from-gray-200 to-purple-200/50 rounded-md mb-1 ml-auto"></div>
+            <div className="h-12 w-40 bg-gradient-to-r from-gray-200 to-purple-200/50 rounded-lg"></div>
+          </div>
+        </div>
+
+        {/* Left message */}
+        <div className="flex items-start gap-2 max-w-[70%]">
+          <div className="w-8 h-8 rounded-full bg-gradient-to-r from-gray-200 to-purple-200/50"></div>
+          <div>
+            <div className="h-4 w-20 bg-gradient-to-r from-gray-200 to-purple-200/50 rounded-md mb-1"></div>
+            <div className="h-10 w-36 bg-gradient-to-r from-gray-200 to-purple-200/50 rounded-lg"></div>
+          </div>
         </div>
       </div>
-    )
-  }
-  
-  export default ShimmerChatLoader
-  
-  
+
+      {/* Input area */}
+      <div className="bg-white p-3 flex gap-2 border-t border-purple-500/20 relative overflow-hidden">
+        {/* Shimmer overlay */}
+        <div className="absolute inset-0 -translate-x-full animate-[shimmer_1.2s_infinite] bg-gradient-to-r from-gray-200 via-purple-200/50 to-gray-200 z-10"></div>
+
+        <div className="flex-1 h-8 bg-gradient-to-r from-gray-200 to-purple-200/50 rounded-md"></div>
+        <div className="h-8 w-12 bg-gradient-to-r from-gray-200 to-purple-200/50 rounded-md"></div>
+      </div>
+    </div>
+  );
+};
+
+export default ShimmerChatLoader;

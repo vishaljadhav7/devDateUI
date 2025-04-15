@@ -14,7 +14,6 @@ import Chat from "./pages/Chat";
 import { WebSocketProvider } from "./context/WebSocketContext";
 import ProtectedRoute from './components/ProtectedRoute'
 
-{/* <ProtectedRoute><Chat/></ProtectedRoute> */}
 
 function App() {
 
